@@ -1,0 +1,27 @@
+# Configuration file for Faster RCNN
+
+####################
+# Common params    #
+####################
+model_name: 'faster_rcnn_inception_resnet_v2_atrous_oid'
+label_map: './ml_service/object_detection/label_maps/oid.pbtxt'
+
+#######################
+# Inference Parameters#
+#######################
+inference:
+  server:          localhost:9000
+  frame_width:     360
+  frame_height:    320
+  score_threshold: 0.2
+
+
+#########################
+# Deployment Parameters #
+#########################
+deploy_params:
+  output_path:      /tmp/     # it will generate a directory using model[name] (/tmp/yolov2_darknet)
+  version:          1         # a TF Serving may have multiple versions
+  iou_threshold:    0.5
+  score_threshold:  0.0
+
