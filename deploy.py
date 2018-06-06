@@ -1,4 +1,4 @@
-"""Deploy trained TF model for inference.
+"""Deploy any trained TF model for inference.
 
 This script optimizes a trained model by quantizing the weights and converts trained model
 to servable TF Serving Model.
@@ -22,10 +22,10 @@ def _main_():
     ###################
     # @TODO: create Argument Parse
     base_dir   = './ml_service/object_detection'
-    model_filename = './ml_service/object_detection/faster_rcnn_inception_resnet_v2_atrous_oid/frozen_inference_graph.pb'
+    model_filename = './ml_service/object_detection/faster_rcnn_inception_resnet_v2_atrous_coco/frozen_inference_graph.pb'
 
     version    = 1
-    model_name = 'faster_rcnn_inception_resnet_v2_atrous_oid'
+    model_name = 'faster_rcnn_inception_resnet_v2_atrous_coco'
     output_dir = os.path.join(base_dir, model_name)
     export_path = os.path.join(output_dir, str(version))
 

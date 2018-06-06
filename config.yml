@@ -3,16 +3,18 @@
 ####################
 # Common params    #
 ####################
-model_name: 'faster_rcnn_inception_resnet_v2_atrous_oid'
-label_map: './ml_service/object_detection/label_maps/oid.pbtxt'
+model_name: 'faster_rcnn_inception_resnet_v2_atrous_coco'
+model_path: '/home/dat/model_zoo/faster_rcnn_inception_resnet_v2_atrous_coco'
+label_map: './ml_service/object_detection/label_maps/mscoco.pbtxt'
 
 #######################
 # Inference Parameters#
 #######################
 inference:
-  server:          localhost:9000
-  frame_width:     360
-  frame_height:    320
+  host:            localhost
+  port:            9000
+  frame_width:     640
+  frame_height:    480
   score_threshold: 0.2
 
 
@@ -20,8 +22,8 @@ inference:
 # Deployment Parameters #
 #########################
 deploy_params:
-  output_path:      /tmp/     # it will generate a directory using model[name] (/tmp/yolov2_darknet)
-  version:          1         # a TF Serving may have multiple versions
+  output_path:      /home/dat/model_zoo   # it will generate a directory using `model_name`
+  version:          1                     # a TF Serving may have multiple versions
   iou_threshold:    0.5
   score_threshold:  0.0
 

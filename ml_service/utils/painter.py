@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-FONT_PATH = './cargan/utils/FiraMono-Medium.otf'
+FONT_PATH = './ml_service/utils/FiraMono-Medium.otf'
 
 
 def draw_boxes(img, bboxes, classes, scores):
@@ -33,6 +33,7 @@ def draw_boxes(img, bboxes, classes, scores):
         y1, x1, y2, x2 = [int(i) for i in box]
         p1 = (x1, y1)
         p2 = (x2, y2)
+        print(category, score)
         label = '{} {:.1f}%   '.format(category, score * 100)
         label_size = draw.textsize(label)
         text_origin = np.array([p1[0], p1[1] - label_size[1]])
@@ -54,24 +55,4 @@ def draw_boxes(img, bboxes, classes, scores):
             font=font)
 
     del draw
-    return np.array(image)
-
-
-def draw_fps(img, fps, detection_fps):
-    height, width, _ = img.shape
-    image = Image.fromarray(img)
-    font = ImageFont.truetype(
-        font=FONT_PATH,
-        size=np.floor(3e-2 * image.size[1] + 0.4).astype('int32'))
-
-    draw = ImageDraw.Draw(image)
-    draw.text((10, height - 20),
-              "Camera FPS: {:.2f} fps".format(fps),
-              fill=(0, 255, 0),
-              font=font)
-
-    draw.text((width - 200, height - 20),
-              "Detection FPS: {:.2f} fps".format(detection_fps),
-              fill=(0, 255, 0),
-              font=font)
     return np.array(image)
