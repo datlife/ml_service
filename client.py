@@ -30,9 +30,9 @@ def main():
       verbose=True)
 
   print('Detecting objects...')
-  results = object_detector.predict(img, img_dtype=np.uint8, timeout=60)
+  bboxes, classes, scores = object_detector.predict(img, img_dtype=np.uint8, timeout=60)
 
-  filtered_outputs = [(box, idx, score) for box, idx, score in zip(results)
+  filtered_outputs = [(box, idx, score) for box, idx, score in zip(bboxes, classes, scores)
                       if score > inference['score_threshold']]
   if zip(*filtered_outputs):
     boxes, classes, scores = zip(*filtered_outputs)
